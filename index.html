@@ -559,7 +559,12 @@ async function generate(){
   const box=document.getElementById('outBox'),body=document.getElementById('outBody'),lbl=document.getElementById('outLbl');
   box.style.display='block';body.innerHTML='<div class="empty-msg">Conținutul se scrie…</div>';lbl.textContent='Se generează…';
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/generate',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({typePrompt:typeP,tone,topic})
+    });
+    const d=await r.json();
+    txt=d.text||'Eroare. Încearcă din nou.';,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
