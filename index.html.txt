@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentAI — Scrie mai puțin. Vinde mai mult.</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0KWK8BVNM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J0KWK8BVNM');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#FFFFFF;
+  --bg:#F5F5F7;
+  --bg2:#FAFAFA;
+  --border:#E5E5E7;
+  --border2:#D1D1D6;
+  --ink:#1D1D1F;
+  --ink2:#424245;
+  --ink3:#86868B;
+  --blue:#0071E3;
+  --blue-h:#0077ED;
+  --blue-bg:#F0F6FF;
+  --blue-border:#C7DDFF;
+  --green:#1D7E4A;
+  --green-bg:#EDF7F2;
+  --f-sans:'DM Sans',system-ui,sans-serif;
+  --f-serif:'DM Serif Display',Georgia,serif;
+  --r:12px;
+  --r2:18px;
+  --shadow:0 2px 20px rgba(0,0,0,0.06);
+  --shadow2:0 8px 40px rgba(0,0,0,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-sans);background:var(--white);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  height:52px;padding:0 clamp(1.5rem,5vw,5rem);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.85);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:var(--f-sans);font-size:17px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.3px}
+.logo b{color:var(--blue)}
+.nav-c{display:flex;align-items:center;gap:2rem}
+.nav-a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .15s}
+.nav-a:hover{color:var(--ink)}
+.nav-btn{background:var(--blue);color:#fff;border:none;padding:7px 17px;border-radius:980px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--f-sans);transition:background .15s}
+.nav-btn:hover{background:var(--blue-h)}
+@media(max-width:600px){.nav-c .nav-a{display:none}}
+
+/* ── HERO ── */
+.hero{max-width:1080px;margin:0 auto;padding:clamp(72px,10vw,120px) clamp(1.5rem,4vw,3rem) clamp(56px,7vw,80px);display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:3rem}}
+
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--green-bg);color:var(--green);font-size:12px;font-weight:500;padding:5px 13px;border-radius:980px;margin-bottom:22px;letter-spacing:.01em}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+h1{font-family:var(--f-serif);font-size:clamp(40px,5vw,58px);line-height:1.08;letter-spacing:-.5px;color:var(--ink);margin-bottom:18px;font-weight:400}
+h1 em{font-style:italic;color:var(--blue)}
+
+.hero-p{font-size:17px;color:var(--ink2);line-height:1.72;margin-bottom:32px;font-weight:300;max-width:440px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn-p{background:var(--blue);color:#fff;border:none;padding:13px 26px;border-radius:980px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--f-sans);transition:background .15s}
+.btn-p:hover{background:var(--blue-h)}
+.btn-g{background:transparent;color:var(--blue);border:none;padding:13px 0;font-size:15px;cursor:pointer;font-family:var(--f-sans);display:flex;align-items:center;gap:5px}
+.btn-g:hover{text-decoration:underline}
+.hero-note{font-size:12px;color:var(--ink3);margin-top:14px}
+
+/* PREVIEW */
+.preview-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow2)}
+.preview-bar{background:var(--bg);border-bottom:1px solid var(--border);padding:11px 14px;display:flex;align-items:center;gap:6px}
+.d{width:10px;height:10px;border-radius:50%}
+.dr{background:#FF5F57}.dy{background:#FEBC2E}.dg{background:#28C840}
+.preview-inner{padding:18px}
+.pv-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.pv-chip{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:12px;color:var(--ink2)}
+.pv-chip.on{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+.pv-chip svg{width:13px;height:13px;flex-shrink:0}
+.pv-in{background:var(--bg);border-radius:9px;padding:10px 12px;font-size:12px;color:var(--ink3);line-height:1.5;margin-bottom:12px}
+.pv-div{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.pv-div::before,.pv-div::after{content:'';flex:1;height:1px;background:var(--border)}
+.pv-div span{font-size:11px;color:var(--ink3);white-space:nowrap}
+.pv-out{background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:9px;padding:13px;font-size:13px;line-height:1.65;color:var(--ink2);position:relative}
+.pv-badge{position:absolute;top:-9px;right:12px;background:var(--blue);color:#fff;font-size:10px;font-weight:600;padding:2px 10px;border-radius:980px}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);max-width:1080px;margin:0 auto}
+
+/* ── STATS ── */
+.stats{max-width:1080px;margin:0 auto;padding:clamp(40px,6vw,60px) clamp(1.5rem,4vw,3rem);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+@media(max-width:560px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--white);padding:2.25rem 2rem;text-align:center}
+.stat-n{font-family:var(--f-serif);font-size:48px;color:var(--ink);line-height:1;letter-spacing:-.5px}
+.stat-n small{font-size:24px;color:var(--blue)}
+.stat-l{font-size:14px;color:var(--ink3);margin-top:6px}
+
+/* ── SECTION ── */
+.sec{max-width:1080px;margin:0 auto;padding:clamp(64px,9vw,96px) clamp(1.5rem,4vw,3rem)}
+.sec-kicker{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:10px}
+.sec-h{font-family:var(--f-serif);font-size:clamp(30px,4vw,44px);color:var(--ink);line-height:1.1;margin-bottom:14px;font-weight:400}
+.sec-h em{font-style:italic}
+.sec-sub{font-size:16px;color:var(--ink2);max-width:500px;line-height:1.7;font-weight:300}
+
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:48px}
+@media(max-width:680px){.steps{grid-template-columns:1fr}}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden}
+.step-bg{position:absolute;bottom:-12px;right:10px;font-family:var(--f-serif);font-size:80px;color:var(--border);line-height:1;pointer-events:none}
+.step-ico{width:44px;height:44px;border-radius:12px;background:var(--blue-bg);border:1px solid var(--blue-border);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.step-t{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.step-d{font-size:14px;color:var(--ink2);line-height:1.65;position:relative;z-index:1;font-weight:300}
+
+/* ── FEATURES ── */
+.feat-bg{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.feat-inner{max-width:1080px;margin:0 auto;padding:clamp(64px,9vw,96px) clamp(1.5rem,4vw,3rem)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-top:48px}
+@media(max-width:620px){.feat-grid{grid-template-columns:1fr}}
+.feat{background:var(--white);padding:2rem}
+.feat-ico{width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+.feat-t{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.feat-d{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300}
+
+/* ── TOOL ── */
+.tool-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow2)}
+.tool-head{background:var(--bg);border-bottom:1px solid var(--border);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.tool-head h2{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.2px}
+.tool-head p{font-size:13px;color:var(--ink3);margin-top:2px}
+.cnt{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:9px 16px;text-align:center}
+.cnt-n{font-family:var(--f-serif);font-size:22px;color:var(--ink);line-height:1}
+.cnt-l{font-size:11px;color:var(--ink3);margin-top:1px}
+.tool-body{padding:2rem}
+.tl-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:10px}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem}
+@media(max-width:460px){.types{grid-template-columns:repeat(2,1fr)}}
+.t-btn{border:1px solid var(--border);border-radius:12px;padding:13px 8px;text-align:center;cursor:pointer;background:var(--white);font-family:var(--f-sans);transition:all .15s}
+.t-btn:hover{border-color:var(--blue);background:var(--blue-bg)}
+.t-btn.on{border-color:var(--blue);background:var(--blue-bg)}
+.t-ico{display:flex;align-items:center;justify-content:center;height:26px;margin-bottom:5px}
+.t-ico svg{width:22px;height:22px}
+.t-lbl{font-size:12px;font-weight:500;color:var(--ink2)}
+.t-btn.on .t-lbl{color:var(--blue)}
+.f{margin-bottom:1.25rem}
+.f label{display:block;font-size:13px;font-weight:500;color:var(--ink2);margin-bottom:7px}
+.f textarea,.f select{width:100%;font-family:var(--f-sans);font-size:14px;border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--ink);background:var(--white);transition:border-color .15s;resize:vertical;font-weight:300}
+.f textarea{min-height:100px}
+.f textarea:focus,.f select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,113,227,.08)}
+.f select option{background:white}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 15px;border:1px solid var(--border);border-radius:980px;font-size:13px;cursor:pointer;color:var(--ink2);background:transparent;font-family:var(--f-sans);transition:all .15s}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip.on{border-color:var(--blue);background:var(--blue-bg);color:var(--blue);font-weight:500}
+.gen-btn{width:100%;padding:15px;font-size:16px;font-weight:500;border:none;border-radius:980px;cursor:pointer;font-family:var(--f-sans);background:var(--blue);color:#fff;margin-top:10px;transition:background .15s}
+.gen-btn:hover{background:var(--blue-h)}
+.gen-btn:disabled{opacity:.45;cursor:not-allowed}
+.out{margin-top:1.5rem;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.out-head{background:var(--bg);border-bottom:1px solid var(--border);padding:9px 14px;display:flex;justify-content:space-between;align-items:center}
+.out-head span{font-size:13px;color:var(--ink3)}
+.cp-btn{font-size:12px;font-weight:500;padding:5px 13px;border-radius:980px;background:var(--white);border:1px solid var(--border);color:var(--ink2);cursor:pointer;font-family:var(--f-sans);transition:all .15s}
+.cp-btn:hover{border-color:var(--blue);color:var(--blue)}
+.out-body{padding:1.25rem;font-size:14px;line-height:1.8;color:var(--ink2);white-space:pre-wrap;min-height:80px;font-weight:300}
+.empty-msg{text-align:center;padding:2rem;color:var(--ink3);font-size:14px;font-style:italic}
+.lim{background:#FFF9EC;border:1px solid #FFD95C;border-radius:10px;padding:11px 16px;margin-top:12px;font-size:13px;color:#7A5A00;display:none;gap:8px;align-items:center}
+.lim a{color:var(--blue);font-weight:500}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ── PRICING ── */
+.pricing-bg{background:var(--bg);border-top:1px solid var(--border)}
+.pricing-inner{max-width:1080px;margin:0 auto;padding:clamp(64px,9vw,96px) clamp(1.5rem,4vw,3rem)}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:48px}
+@media(max-width:580px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:2.5rem 2rem;position:relative}
+.plan.hot{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),var(--shadow)}
+.plan-rib{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:600;padding:3px 14px;border-radius:980px;white-space:nowrap}
+.plan-tier{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:10px}
+.plan-price{font-family:var(--f-serif);font-size:52px;color:var(--ink);line-height:1;letter-spacing:-.5px}
+.plan-price sub{font-size:17px;color:var(--ink3);font-family:var(--f-sans);font-weight:300;letter-spacing:0}
+.plan-desc{font-size:14px;color:var(--ink2);margin:10px 0 22px;line-height:1.6;font-weight:300}
+.plan-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
+.plan-list li{font-size:14px;color:var(--ink2);display:flex;align-items:flex-start;gap:9px;font-weight:300}
+.plan-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.plan-list li.no{color:var(--ink3)}
+.plan-list li.no::before{content:'—';color:var(--border)}
+.plan-b{width:100%;padding:13px;border-radius:980px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--f-sans);border:none;transition:all .15s}
+.plan-b-free{background:var(--bg);color:var(--ink);border:1px solid var(--border)}
+.plan-b-free:hover{border-color:var(--border2)}
+.plan-b-paid{background:var(--blue);color:#fff}
+.plan-b-paid:hover{background:var(--blue-h)}
+
+/* ── TESTI ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:48px}
+@media(max-width:680px){.testi-grid{grid-template-columns:1fr}}
+.tcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.75rem}
+.stars{color:#F5A623;font-size:13px;margin-bottom:12px;letter-spacing:1px}
+.tcard-q{font-family:var(--f-serif);font-style:italic;font-size:16px;color:var(--ink);line-height:1.6;margin-bottom:18px;font-weight:400}
+.tcard-foot{display:flex;align-items:center;gap:11px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--blue-bg);border:1px solid var(--blue-border);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.av-n{font-size:13px;font-weight:600;color:var(--ink)}
+.av-r{font-size:12px;color:var(--ink3);margin-top:1px}
+
+/* ── FAQ ── */
+.faq-wrap{max-width:640px;margin:0 auto;padding:clamp(64px,9vw,96px) clamp(1.5rem,4vw,3rem)}
+.faq-wrap .sec-h{text-align:center;margin-bottom:8px}
+.faq-wrap .sec-sub{text-align:center;margin:0 auto 44px}
+.fq{border-bottom:1px solid var(--border);padding:18px 0}
+.fq-q{font-size:15px;font-weight:500;color:var(--ink);display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:12px;line-height:1.4}
+.fq-ic{width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink3);flex-shrink:0;transition:transform .2s,background .15s}
+.fq.open .fq-ic{transform:rotate(45deg);background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+.fq-a{font-size:14px;color:var(--ink2);line-height:1.7;margin-top:12px;display:none;font-weight:300;padding-right:2.5rem}
+.fq.open .fq-a{display:block}
+
+/* ── FINAL CTA ── */
+.cta-final{background:var(--ink);padding:clamp(80px,11vw,120px) clamp(1.5rem,4vw,3rem);text-align:center}
+.cta-final h2{font-family:var(--f-serif);font-size:clamp(36px,5vw,58px);color:#fff;line-height:1.1;margin-bottom:14px;font-weight:400}
+.cta-final h2 em{font-style:italic;color:#60A5FA}
+.cta-final p{font-size:16px;color:#86868B;margin-bottom:36px;font-weight:300}
+.btn-cta-f{background:var(--blue);color:#fff;border:none;padding:16px 38px;border-radius:980px;font-size:17px;font-weight:500;cursor:pointer;font-family:var(--f-sans);transition:background .15s}
+.btn-cta-f:hover{background:var(--blue-h)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:22px clamp(1.5rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-logo{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.2px}
+.f-logo b{color:var(--blue)}
+.f-links{display:flex;gap:1.5rem}
+.f-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .15s}
+.f-links a:hover{color:var(--ink)}
+.f-copy{font-size:12px;color:var(--ink3)}
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-fb" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><path fill="#C13584" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Content<b>AI</b></a>
+  <div class="nav-c">
+    <a href="#cum-functioneaza" class="nav-a">Cum funcționează</a>
+    <a href="#preturi" class="nav-a">Prețuri</a>
+    <button class="nav-btn" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">Încearcă gratuit</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">🇷🇴 Generator AI pentru piața din România</div>
+    <h1>Conținut de marketing<br>generat <em>instant.</em></h1>
+    <p class="hero-p">ContentAI scrie postări, reclame și email-uri profesioniste pentru afacerea ta — în câteva secunde, în română corectă, gata de postat.</p>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">Încearcă gratuit</button>
+      <button class="btn-g" onclick="document.getElementById('preturi').scrollIntoView({behavior:'smooth'})">Vezi prețurile →</button>
+    </div>
+    <p class="hero-note">5 texte gratuite pe zi &nbsp;·&nbsp; Fără card bancar &nbsp;·&nbsp; Fără instalare</p>
+  </div>
+  <div>
+    <div class="preview-card">
+      <div class="preview-bar">
+        <div class="d dr"></div><div class="d dy"></div><div class="d dg"></div>
+      </div>
+      <div class="preview-inner">
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:8px">Tip conținut</div>
+        <div class="pv-row">
+          <div class="pv-chip on">
+            <svg viewBox="0 0 24 24"><use href="#i-fb"/></svg>
+            Facebook
+          </div>
+          <div class="pv-chip">
+            <svg viewBox="0 0 24 24" width="13" height="13"><use href="#i-ig"/></svg>
+            Instagram
+          </div>
+          <div class="pv-chip">
+            <svg viewBox="0 0 24 24"><use href="#i-mail"/></svg>
+            Email
+          </div>
+        </div>
+        <div class="pv-in">Salon de înfrumusețare în Cluj, reducere 30% în noiembrie la toate serviciile…</div>
+        <div class="pv-div"><span>✨ generat în 4 secunde</span></div>
+        <div class="pv-out">
+          <div class="pv-badge">✓ Gata de postat</div>
+          <strong>🌟 Noiembrie e luna ta!</strong><br><br>
+          Bucură-te de <strong>−30% la TOATE serviciile</strong> noastre. Programează-te acum! 💅<br>
+          <span style="color:var(--ink3);font-size:11px">#SalonCluj #Beauty #Reduceri</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div style="max-width:1080px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem) 80px">
+  <div class="stats">
+    <div class="stat"><div class="stat-n">6<small>+</small></div><div class="stat-l">Formate de conținut</div></div>
+    <div class="stat"><div class="stat-n">&lt;<small>5s</small></div><div class="stat-l">Timp mediu de generare</div></div>
+    <div class="stat"><div class="stat-n">19<small>€</small></div><div class="stat-l">Cost lunar, acces nelimitat</div></div>
+  </div>
+</div>
+
+<!-- HOW -->
+<section class="sec" id="cum-functioneaza">
+  <div class="sec-kicker">Cum funcționează</div>
+  <div class="sec-h">Trei pași simpli</div>
+  <div class="sec-sub">Nu trebuie să știi să scrii. Nu trebuie să fii copywriter. Urmezi pașii și conținutul apare gata.</div>
+  <div class="steps">
+    <div class="step"><div class="step-bg">01</div>
+      <div class="step-ico">🎯</div>
+      <div class="step-t">Alegi tipul de conținut</div>
+      <div class="step-d">Facebook, Instagram, email, descriere de produs, reclamă Google sau articol de blog. Tu decizi ce ai nevoie în acel moment.</div>
+    </div>
+    <div class="step"><div class="step-bg">02</div>
+      <div class="step-ico">✍️</div>
+      <div class="step-t">Descrii afacerea ta</div>
+      <div class="step-d">Câteva rânduri despre ce vinzi și ce mesaj vrei să transmiți. Nu trebuie să scrii frumos — asta e treaba ContentAI.</div>
+    </div>
+    <div class="step"><div class="step-bg">03</div>
+      <div class="step-ico">🚀</div>
+      <div class="step-t">Copiezi și postezi</div>
+      <div class="step-d">Textul apare în câteva secunde, scris profesionist. Copiezi cu un click și îl postezi direct — gata.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feat-bg">
+  <div class="feat-inner">
+    <div class="sec-kicker">De ce ContentAI</div>
+    <div class="sec-h">Tot ce îți trebuie</div>
+    <div class="feat-grid">
+      <div class="feat"><div class="feat-ico">⚡</div><div class="feat-t">Rezultate în sub 5 secunde</div><div class="feat-d">Nu mai piezi ore în față paginii goale. ContentAI generează text profesionist aproape instantaneu, de fiecare dată.</div></div>
+      <div class="feat"><div class="feat-ico">🇷🇴</div><div class="feat-t">Optimizat pentru română</div><div class="feat-d">Texte naturale, corecte gramatical, adaptate publicului românesc. Fără construcții stranii traduse din engleză.</div></div>
+      <div class="feat"><div class="feat-ico">🎨</div><div class="feat-t">Ton personalizabil</div><div class="feat-d">Profesionist, prietenos, urgent, amuzant sau inspirațional — alegi vocea potrivită brandului tău la fiecare generare.</div></div>
+      <div class="feat"><div class="feat-ico">♾️</div><div class="feat-t">Nelimitat la planul Pro</div><div class="feat-d">Un abonament de 19€/lună. Nicio limită de generări, niciun cost ascuns, nicio surpriză la final de lună.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERATOR -->
+<section class="sec" id="generator">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="sec-kicker">Încearcă acum</div>
+    <div class="sec-h">Generează primul text gratuit</div>
+    <div class="sec-sub" style="margin:0 auto">Completează câmpurile și apasă butonul. Atât.</div>
+  </div>
+  <div class="tool-wrap">
+    <div class="tool-head">
+      <div>
+        <h2>ContentAI Generator</h2>
+        <p>Completează câmpurile de mai jos</p>
+      </div>
+      <div class="cnt">
+        <div class="cnt-n" id="cntN">5</div>
+        <div class="cnt-l">generări rămase azi</div>
+      </div>
+    </div>
+    <div class="tool-body">
+      <div class="tl-lbl">Tip conținut</div>
+      <div class="types">
+        <button class="t-btn on" onclick="setType(this,'Scrie o postare captivantă pentru Facebook cu emoji-uri relevante și un call-to-action clar')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-fb"/></svg></div>
+          <div class="t-lbl">Facebook</div>
+        </button>
+        <button class="t-btn" onclick="setType(this,'Scrie o legendă creativă pentru Instagram cu hashtag-uri relevante în română și engleză')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="url(#ig-btn-grad)"/><defs><radialGradient id="ig-btn-grad" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 12 8.9a3.1 3.1 0 0 1 0 6.2zm4.98-8.1a1.12 1.12 0 1 1-2.24 0 1.12 1.12 0 0 1 2.24 0zM20 8.56c-.05-1.05-.28-1.98-.98-2.68-.7-.7-1.63-.93-2.68-.98C15.27 4.85 8.73 4.85 7.66 4.9c-1.05.05-1.97.28-2.68.98-.7.7-.93 1.63-.98 2.68C3.95 9.63 3.95 14.37 4 15.44c.05 1.05.28 1.98.98 2.68.7.7 1.63.93 2.68.98 1.07.05 7.61.05 8.68 0 1.05-.05 1.98-.28 2.68-.98.7-.7.93-1.63.98-2.68.05-1.07.05-7.8 0-8.88zm-2 8.96a3.16 3.16 0 0 1-1.78 1.78c-1.23.49-4.15.38-5.22.38s-4-.1-5.22-.38a3.16 3.16 0 0 1-1.78-1.78C3.51 16.29 3.62 13.37 3.62 12s-.1-4.3.38-5.52A3.16 3.16 0 0 1 5.78 4.7C7 4.21 9.93 4.32 11 4.32s4 .1 5.22.38a3.16 3.16 0 0 1 1.78 1.78c.49 1.23.38 4.15.38 5.52s.1 4.3-.38 5.52z" fill="white"/></svg></div>
+          <div class="t-lbl">Instagram</div>
+        </button>
+        <button class="t-btn" onclick="setType(this,'Scrie un email de marketing complet cu subiect captivant și corp convingător')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-mail"/></svg></div>
+          <div class="t-lbl">Email</div>
+        </button>
+        <button class="t-btn" onclick="setType(this,'Scrie o descriere de produs persuasivă și completă pentru un magazin online românesc')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-bag"/></svg></div>
+          <div class="t-lbl">Produs</div>
+        </button>
+        <button class="t-btn" onclick="setType(this,'Scrie 3 variante de reclame Google Ads: titlu max 30 caractere, descriere max 90 caractere')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-google"/></svg></div>
+          <div class="t-lbl">Google Ads</div>
+        </button>
+        <button class="t-btn" onclick="setType(this,'Scrie o introducere captivantă pentru un articol de blog care să atragă cititorul să continue')">
+          <div class="t-ico"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-edit"/></svg></div>
+          <div class="t-lbl">Blog</div>
+        </button>
+      </div>
+      <div class="f">
+        <label>Descrie afacerea sau produsul tău</label>
+        <textarea id="topic" placeholder="Ex: Magazin online de haine pentru femei din București, livrare gratuită peste 200 lei, colecție nouă de toamnă, reduceri până la 40%…"></textarea>
+      </div>
+      <div class="f">
+        <label>Tonul textului</label>
+        <div class="chips">
+          <button class="chip on" onclick="setTone(this)">Profesionist</button>
+          <button class="chip" onclick="setTone(this)">Prietenos</button>
+          <button class="chip" onclick="setTone(this)">Urgent</button>
+          <button class="chip" onclick="setTone(this)">Amuzant</button>
+          <button class="chip" onclick="setTone(this)">Inspirațional</button>
+        </div>
+      </div>
+      <button class="gen-btn" id="genBtn" onclick="generate()">✨ Generează conținut</button>
+      <div class="lim" id="limBar">⚠️ Ai atins limita zilnică. <a href="#preturi">Treci la Pro</a> pentru generări nelimitate.</div>
+      <div class="out" id="outBox" style="display:none">
+        <div class="out-head">
+          <span id="outLbl">Rezultat</span>
+          <button class="cp-btn" onclick="copyTxt()">📋 Copiază</button>
+        </div>
+        <div class="out-body" id="outBody"><div class="empty-msg">Conținutul tău va apărea aici.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="preturi">
+  <div class="pricing-inner">
+    <div style="text-align:center">
+      <div class="sec-kicker">Prețuri</div>
+      <div class="sec-h">Simplu și transparent</div>
+      <div class="sec-sub" style="margin:0 auto">Fără surprize. Fără costuri ascunse.</div>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-tier">Gratuit</div>
+        <div class="plan-price">0€ <sub>/ lună</sub></div>
+        <div class="plan-desc">Perfect pentru a testa ContentAI fără niciun risc sau angajament.</div>
+        <ul class="plan-list">
+          <li>5 generări gratuite pe zi</li>
+          <li>Toate cele 6 tipuri de conținut</li>
+          <li>Română și engleză</li>
+          <li class="no">Generări nelimitate</li>
+          <li class="no">Istoric salvat</li>
+          <li class="no">Suport prioritar</li>
+        </ul>
+        <button class="plan-b plan-b-free" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">Începe gratuit</button>
+      </div>
+      <div class="plan hot">
+        <div class="plan-rib">⭐ Cel mai ales</div>
+        <div class="plan-tier">Pro</div>
+        <div class="plan-price">19€ <sub>/ lună</sub></div>
+        <div class="plan-desc">Pentru antreprenori și agenții care au nevoie de conținut constant, fără limitări.</div>
+        <ul class="plan-list">
+          <li>Generări complet nelimitate</li>
+          <li>Toate cele 6 tipuri de conținut</li>
+          <li>Română, engleză, franceză</li>
+          <li>Istoric salvat 30 de zile</li>
+          <li>Export Word și PDF</li>
+          <li>Suport prioritar în 24h</li>
+        </ul>
+        <button class="plan-b plan-b-paid">Activează Pro — 19€/lună</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec">
+  <div class="sec-kicker">Ce spun clienții</div>
+  <div class="sec-h">Rezultate reale</div>
+  <div class="testi-grid">
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <div class="tcard-q">„Economisesc cel puțin 3 ore pe săptămână. Descrierile de produse sunt mult mai bune decât tot ce scriam manual înainte."</div>
+      <div class="tcard-foot"><div class="av">AM</div><div><div class="av-n">Andrei Mihalache</div><div class="av-r">Magazin online, București</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <div class="tcard-q">„Postările pentru salonul meu arată acum ca ale unui brand mare. Engagement-ul pe Facebook a crescut enorm din prima lună."</div>
+      <div class="tcard-foot"><div class="av">RI</div><div><div class="av-n">Raluca Ionescu</div><div class="av-r">Salon beauty, Cluj-Napoca</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="stars">★★★★★</div>
+      <div class="tcard-q">„Ca freelancer în marketing, acum livrez de trei ori mai mult conținut clienților. 19€ pe lună sunt nimic față de ce câștig în plus."</div>
+      <div class="tcard-foot"><div class="av">CP</div><div><div class="av-n">Cristian Popa</div><div class="av-r">Freelancer marketing digital</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-wrap">
+  <div class="sec-kicker" style="text-align:center">Întrebări frecvente</div>
+  <div class="sec-h">Ai întrebări?</div>
+  <div class="sec-sub">Avem răspunsuri clare.</div>
+  <div class="fq open">
+    <div class="fq-q" onclick="tFq(this)">Cum funcționează cele 5 generări gratuite?<div class="fq-ic">+</div></div>
+    <div class="fq-a">Poți genera 5 texte pe zi complet gratuit, fără card bancar. Limita se resetează automat la miezul nopții. Dacă ai nevoie de mai mult, planul Pro oferă generări nelimitate pentru 19€ pe lună.</div>
+  </div>
+  <div class="fq">
+    <div class="fq-q" onclick="tFq(this)">Conținutul generat îmi aparține mie?<div class="fq-ic">+</div></div>
+    <div class="fq-a">Da, în totalitate. Tot conținutul generat prin ContentAI îți aparține și îl poți folosi cum dorești — pe site, în reclame, pe social media — fără nicio restricție.</div>
+  </div>
+  <div class="fq">
+    <div class="fq-q" onclick="tFq(this)">Textele sunt unice sau le primesc și alții?<div class="fq-ic">+</div></div>
+    <div class="fq-a">Fiecare text este generat pe loc, pornind de la descrierea ta specifică. Niciun alt utilizator nu primește același conținut — e creat exclusiv pentru tine.</div>
+  </div>
+  <div class="fq">
+    <div class="fq-q" onclick="tFq(this)">Pot anula abonamentul Pro oricând?<div class="fq-ic">+</div></div>
+    <div class="fq-a">Absolut. Anulezi cu un singur click, oricând dorești, fără penalități. Accesul Pro rămâne activ până la sfârșitul perioadei plătite.</div>
+  </div>
+  <div class="fq">
+    <div class="fq-q" onclick="tFq(this)">Funcționează și pentru alte domenii în afară de retail?<div class="fq-ic">+</div></div>
+    <div class="fq-a">Da, funcționează pentru orice tip de afacere — saloane, restaurante, clinici, agenții, consultanți, coaches. Atâta timp cât îți descrii afacerea, ContentAI se adaptează perfect.</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <h2>Gata să ai conținut<br>care <em>chiar vinde?</em></h2>
+  <p>5 generări gratuite azi. Fără card bancar.</p>
+  <button class="btn-cta-f" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">Încearcă ContentAI gratuit →</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Content<b>AI</b></div>
+  <div class="f-links">
+    <a href="#">Termeni</a>
+    <a href="#">Confidențialitate</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="f-copy">© 2025 ContentAI.ro</div>
+</footer>
+
+<script>
+const MAX=5;
+let typeP='Scrie o postare captivantă pentru Facebook cu emoji-uri relevante și un call-to-action clar';
+let tone='Profesionist';
+let busy=false,txt='';
+
+function getC(){const d=new Date().toDateString();if(localStorage.getItem('cai_d')!==d){localStorage.setItem('cai_d',d);localStorage.setItem('cai_c','0')}return+(localStorage.getItem('cai_c')||0)}
+function addC(){localStorage.setItem('cai_c',getC()+1)}
+function upCnt(){document.getElementById('cntN').textContent=Math.max(0,MAX-getC())}
+upCnt();
+
+function setType(b,p){document.querySelectorAll('.t-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');typeP=p}
+function setTone(b){document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');tone=b.textContent}
+
+async function generate(){
+  if(busy)return;upCnt();
+  if(getC()>=MAX){document.getElementById('limBar').style.display='flex';return}
+  const topic=document.getElementById('topic').value.trim();
+  if(!topic){document.getElementById('topic').focus();return}
+  busy=true;
+  const btn=document.getElementById('genBtn');
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span>Se generează…';
+  const box=document.getElementById('outBox'),body=document.getElementById('outBody'),lbl=document.getElementById('outLbl');
+  box.style.display='block';body.innerHTML='<div class="empty-msg">Conținutul se scrie…</div>';lbl.textContent='Se generează…';
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':'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n2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-t0DngBCwXAWUMKh-M_R2GiQyrMr97QHcJ7vhRxzkE5QG0ELhcG3fjlpUUI2ODjnzpJJE8rTW8tAWAokva7-GWg-8Yka8QAA',
+        'anthropic-version':'2023-06-01'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',max_tokens:1000,
+        system:`Ești un copywriter profesionist specializat în marketing pentru piața românească. Scrii texte naturale, corecte gramatical și convingătoare în limba română. Tonul dorit: ${tone}. Răspunde EXCLUSIV cu textul cerut — fără explicații sau comentarii suplimentare.`,
+        messages:[{role:'user',content:`${typeP}\n\nDetalii:\n${topic}`}]
+      })
+    });
+    const d=await r.json();
+    txt=d.content?.map(b=>b.text||'').join('')||'Eroare. Încearcă din nou.';
+    body.textContent=txt;lbl.textContent='✓ Text generat';
+    addC();upCnt();
+    if(getC()>=MAX)document.getElementById('limBar').style.display='flex';
+  }catch(e){body.textContent='Eroare de conexiune. Verifică internetul și încearcă din nou.'}
+  busy=false;btn.disabled=false;btn.innerHTML='✨ Generează din nou';
+}
+
+function copyTxt(){
+  if(!txt)return;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const b=document.querySelector('.cp-btn');
+    b.textContent='✓ Copiat!';setTimeout(()=>b.textContent='📋 Copiază',1500)
+  })
+}
+
+function tFq(el){
+  const i=el.parentElement;
+  document.querySelectorAll('.fq.open').forEach(x=>{if(x!==i)x.classList.remove('open')});
+  i.classList.toggle('open')
+}
+</script>
+</body>
+</html>
