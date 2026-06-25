@@ -560,25 +560,12 @@ async function generate(){
   box.style.display='block';body.innerHTML='<div class="empty-msg">Conținutul se scrie…</div>';lbl.textContent='Se generează…';
   try{
     const r=await fetch('/api/generate',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({typePrompt:typeP,tone,topic})
     });
     const d=await r.json();
-    txt=d.text||'Eroare. Încearcă din nou.';,{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':'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n2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-xKn2rPDQXhLoI4SrAnVaCdE-aUatFTGfebtebYMLCK9Q6e1IbEtykFoSzn3E6hONbTYnCkJJenSEGTinV9viZA-jRljxwAA-t0DngBCwXAWUMKh-M_R2GiQyrMr97QHcJ7vhRxzkE5QG0ELhcG3fjlpUUI2ODjnzpJJE8rTW8tAWAokva7-GWg-8Yka8QAA',
-        'anthropic-version':'2023-06-01'
-      },
-      body:JSON.stringify({
-        model:'claude-sonnet-4-6',max_tokens:1000,
-        system:`Ești un copywriter profesionist specializat în marketing pentru piața românească. Scrii texte naturale, corecte gramatical și convingătoare în limba română. Tonul dorit: ${tone}. Răspunde EXCLUSIV cu textul cerut — fără explicații sau comentarii suplimentare.`,
-        messages:[{role:'user',content:`${typeP}\n\nDetalii:\n${topic}`}]
-      })
-    });
-    const d=await r.json();
-    txt=d.content?.map(b=>b.text||'').join('')||'Eroare. Încearcă din nou.';
+    txt=d.text||'Eroare. Încearcă din nou.';
     body.textContent=txt;lbl.textContent='✓ Text generat';
     addC();upCnt();
     if(getC()>=MAX)document.getElementById('limBar').style.display='flex';
